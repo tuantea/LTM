@@ -29,9 +29,9 @@ USER* Readfile(char fileName[])
         string1 = strtok(NULL, " ");
         node->password=strdup(string1);
         string1 = strtok(NULL, " ");
-        node->status=atoi(string1);
-        string1 = strtok(NULL, " ");
         node->hostname=strdup(string1);
+        string1 = strtok(NULL, " ");
+        node->status=atoi(string1);
         node->bloked=0;
         node->signin=0;
         node->next =NULL;
@@ -215,6 +215,7 @@ int Logout(USER *head,char username[])
     }
         else{
             printf("Goodbye %s\n",username);
+
         }
     return 0;
 }
@@ -253,7 +254,7 @@ int WithHostName(USER *head,char username[]){
             return 0;
         }
         else{
-        printf("Official HostName:%s\n",p->hostname);
+        printf("Official HostName:%s",p->hostname);
         
         return 0;
     }
@@ -266,6 +267,7 @@ int get_ip(char * hostname)
     if ((he = gethostbyname(hostname)) == NULL)     
     {     
     	printf("Not found information.\n");
+        return 0;
     }    
     addr_list = (struct in_addr **) he->h_addr_list;
     printf("Official IP:%s\n",inet_ntoa(*addr_list[0]));
